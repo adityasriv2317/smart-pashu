@@ -15,14 +15,14 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-white font-sans">
       {/* Header */}
-      <header className="w-full flex items-center justify-between px-6 py-4 border-b border-neutral-200">
+      <header className="w-full flex items-center justify-between px-6 py-4 border-b border-neutral-200 select-none">
         <div className="flex items-center gap-2">
           <Sprout className="w-8 h-8 text-green-700" />
           <span className="text-xl font-bold tracking-tight text-neutral-900">
             Smart Pashu
           </span>
         </div>
-        <nav className="hidden md:flex gap-8 text-sm text-neutral-700">
+        <nav className="hidden md:flex gap-8 text-sm text-neutral-700 select-none">
           <a
             href="#features"
             className="hover:text-green-700 transition-colors"
@@ -56,10 +56,10 @@ export default function Home() {
           animate={{ scale: 1 }}
           transition={{ duration: 0.7 }}
         >
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-neutral-900 mb-4 tracking-tight">
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-neutral-900 mb-4 tracking-tight select-none">
             Image-based Cattle & Buffalo Breed Identification
           </h1>
-          <p className="max-w-xl mx-auto text-lg text-neutral-600 mb-6">
+          <p className="max-w-xl mx-auto text-lg select-none text-neutral-600 mb-6">
             Empowering Field Level Workers (FLWs) to register animals with
             AI-driven breed suggestions. Seamless integration with Bharat
             Pashudhan App (BPA) for accurate, validated records.
@@ -89,7 +89,7 @@ export default function Home() {
       {/* Features Section */}
       <section
         id="features"
-        className="w-full max-w-5xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8"
+        className="w-full max-w-5xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8 select-none"
       >
         <motion.div
           whileHover={{ y: -4, scale: 1.03 }}
@@ -134,7 +134,7 @@ export default function Home() {
 
       {/* Gallery Section */}
       <section id="gallery" className="w-full max-w-5xl mx-auto px-6 py-12">
-        <h2 className="text-2xl font-bold text-neutral-900 mb-6 text-center">
+        <h2 className="text-2xl font-bold text-neutral-900 mb-6 text-center select-none">
           Breed Gallery
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -196,16 +196,16 @@ export default function Home() {
             Sign in to the web app or download the mobile app to begin
             registering animals with AI-powered breed identification.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex gap-4 items-center justify-around sm:justify-center">
             <a
               href="/auth"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-green-700 text-white font-semibold shadow hover:bg-green-800 transition-colors text-base"
+              className="inline-flex w-fit items-center gap-2 px-6 py-3 rounded-full bg-green-700 text-white font-semibold shadow hover:bg-green-800 transition-colors text-base"
             >
               Sign In (Web) <ArrowRight className="w-5 h-5" />
             </a>
             <a
               href="#get-app"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-green-700 text-green-700 font-semibold hover:bg-green-50 transition-colors text-base"
+              className="inline-flex w-fit items-center gap-2 px-6 py-3 rounded-full border border-green-700 text-green-700 font-semibold hover:bg-green-50 transition-colors text-base"
             >
               Download App <Smartphone className="w-5 h-5" />
             </a>
@@ -214,7 +214,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="w-full border-t border-neutral-200 py-6 px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-neutral-500 mt-auto">
+      <footer className="w-full border-t border-neutral-200 py-6 px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-neutral-500 mt-auto select-none">
         <span>
           &copy; {new Date().getFullYear()} Smart Pashu. All rights reserved.
         </span>
