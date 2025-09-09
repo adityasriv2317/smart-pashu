@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function Footer() {
   return (
     <motion.footer
-      className="py-4 px-2 sm:px-8 flex flex-col md:flex-row items-center md:justify-between gap-4 md:gap-6 bg-gradient-to-b from-white to-green-900/40 text-gray-300 border-t border-indigo-500 w-full"
+      className="py-4 px-2 sm:px-8 flex flex-col md:flex-row items-center md:justify-between gap-4 md:gap-6 bg-gradient-to-b from-white to-green-900/40 text-gray-300 border-t border-green-500 w-full"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.5, duration: 0.5 }}
@@ -17,8 +17,8 @@ export default function Footer() {
         >
           Smart-Pashu
         </a>
-        <span className="hidden sm:inline text-gray-500">|</span>
-        <div className="text-xs text-gray-300 sm:text-right w-full sm:w-auto mt-1 sm:mt-0">
+        <span className="hidden sm:inline font-bold text-gray-500">|</span>
+        <div className="text-xs text-gray-900 sm:text-right w-full sm:w-auto mt-1 sm:mt-0">
           © {new Date().getFullYear()} FourAM.
         </div>
       </div>
