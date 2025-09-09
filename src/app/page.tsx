@@ -24,6 +24,13 @@ export default function Home() {
     }
   }, [status]);
 
+  useEffect(() => {
+    const token = sessionStorage.getItem("authToken");
+    if (token) {
+      window.location.href = "/dashboard";
+    }
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col bg-white font-sans">
       {/* Header */}
