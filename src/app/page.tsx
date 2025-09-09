@@ -11,6 +11,8 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 
+import Footer from "@/components/Footer";
+
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-white font-sans">
@@ -37,7 +39,7 @@ export default function Home() {
           </a>
         </nav>
         <a
-          href="#get-started"
+          href="/auth"
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-700 text-white font-medium shadow hover:bg-green-800 transition-colors"
         >
           Get Started <ArrowRight className="w-4 h-4" />
@@ -72,7 +74,7 @@ export default function Home() {
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <a
-            href="#get-started"
+            href="/auth"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-green-700 text-white font-semibold shadow hover:bg-green-800 transition-colors text-base"
           >
             Try Web App <Laptop className="w-5 h-5" />
@@ -214,19 +216,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="w-full border-t border-neutral-200 py-6 px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-neutral-500 mt-auto select-none">
-        <span>
-          &copy; {new Date().getFullYear()} Smart Pashu. All rights reserved.
-        </span>
-        <div className="flex gap-4">
-          <a href="#contact" className="hover:underline">
-            Contact
-          </a>
-          <a href="#" className="hover:underline">
-            Privacy Policy
-          </a>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

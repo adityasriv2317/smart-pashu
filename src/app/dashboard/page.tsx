@@ -3,7 +3,7 @@ import { Sprout, UserCheck, BookOpen, LogOut } from "lucide-react";
 
 export default function Dashboard() {
   return (
-  <div className="min-h-screen flex flex-col bg-white font-sans">
+    <div className="min-h-screen flex flex-col bg-white font-sans">
       {/* Header */}
       <header className="w-full flex items-center justify-between px-6 py-4 border-b border-neutral-200 select-none">
         <div className="flex items-center gap-2">
