@@ -25,7 +25,8 @@ export default function Home() {
   }, [status]);
 
   useEffect(() => {
-    const token = sessionStorage.getItem("authToken");
+    const token =
+      sessionStorage.getItem("authToken") || localStorage.getItem("authToken");
     if (token) {
       window.location.href = "/dashboard";
     }

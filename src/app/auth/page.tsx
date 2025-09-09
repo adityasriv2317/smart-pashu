@@ -71,7 +71,8 @@ export default function AuthPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const token = sessionStorage.getItem("authToken");
+    const token =
+      sessionStorage.getItem("authToken") || localStorage.getItem("authToken");
     if (token) {
       window.location.href = "/dashboard";
     }
@@ -85,12 +86,18 @@ export default function AuthPage() {
     const formData = new FormData(e.currentTarget);
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
+    const rememberMe = formData.get("remember-me") === "on";
 
     try {
       const response = await axios.post("/api/auth/login", { email, password });
       const { token } = response.data;
 
-      sessionStorage.setItem("authToken", token);
+      if (rememberMe) {
+        localStorage.setItem("authToken", token);
+      } else {
+        sessionStorage.setItem("authToken", token);
+      }
+
       window.location.href = "/dashboard";
     } catch (error: any) {
       setErrorMessage(
@@ -237,6 +244,7 @@ export default function AuthPage() {
                     <input
                       type="checkbox"
                       id="remember-me"
+                      name="remember-me"
                       className="mr-2 h-4 w-4 accent-green-700"
                     />
                     <label
