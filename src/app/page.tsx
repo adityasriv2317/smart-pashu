@@ -10,10 +10,20 @@ import {
   ArrowRight,
 } from "lucide-react";
 import Image from "next/image";
+import { useEffect } from "react";
+import { useSession } from "next-auth/react";
 
 import Footer from "@/components/Footer";
 
 export default function Home() {
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      window.location.href = "/dashboard";
+    }
+  }, [status]);
+
   return (
     <div className="min-h-screen flex flex-col bg-white font-sans">
       {/* Header */}
