@@ -30,7 +30,7 @@ const Chatbot = () => {
         {
           parts: [
             {
-              text: `you are an expert assistant in cattle breed detection farm and this is the query from the user, ${message}. give only the required and appropriate and brief response. Do not answer if the question is not related to cattle, cattle breeds or farm.`,
+              text: `you are an expert assistant in cattle breed detection farm and this is the query from the user, ${message}. give appropriate and direct without confirming anything. Do not answer if the question is not related to cattle, cattle breeds or farm.`,
             },
           ],
         },
@@ -50,6 +50,7 @@ const Chatbot = () => {
         sender: "bot",
         text: response.data?.candidates?.[0]?.content?.parts?.[0]?.text,
       };
+
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
       setMessages((prev) => [
@@ -140,7 +141,10 @@ const Chatbot = () => {
                         {/* Assuming you have your formatText functions */}
                         <pre className="whitespace-pre-wrap font-sans text-base">
                           {msg.sender === "bot"
-                            ? formatText(msg.text)
+                            ? formatText(msg.text).replace(
+                                /^Here are the key areas to focus on:\s*/i,
+                                ""
+                              )
                             : msg.text}
                         </pre>
                       </div>
