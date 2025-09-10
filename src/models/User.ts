@@ -25,4 +25,4 @@ const UserSchema: Schema = new Schema({
 });
 
 export default mongoose.models.PashuUser ||
-  mongoose.model<IUser>("User", UserSchema);
+  mongoose.model<IUser>("PashuUser", UserSchema);

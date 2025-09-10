@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Footer from "@/components/Footer";
 import { useState } from "react";
 import axios from "axios";
-import { useTranslations } from "next-intl"; 
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Chatbot from "@/components/Chatbot";
 
@@ -14,10 +14,12 @@ export default function Dashboard() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
   const [uploadResult, setUploadResult] = useState<any | null>(null); // Changed to 'any' to handle JSON object
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setSelectedFile(e.target.files[0]);
+      setPreviewUrl(URL.createObjectURL(e.target.files[0]));
     }
   };
 
@@ -33,22 +35,16 @@ export default function Dashboard() {
 
   const handleUpload = async () => {
     if (!selectedFile) {
-      window.alert(t("notifications.selectFile")); // Use translation
+      window.alert(t("notifications.selectFile"));
       return;
     }
     setUploading(true);
     setUploadResult(null);
     try {
       const formData = new FormData();
-      formData.append("image", selectedFile);
-
+      formData.append("file", selectedFile);
       const url = process.env.NEXT_PUBLIC_ML_API;
-      const response = await axios.post(`${url}/predict/`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-
-      console.log("API Response:", response.data);
-
+      const response = await axios.post(`${url}/predict/`, formData);
       setUploadResult(
         response.data || { message: t("notifications.uploadSuccess") }
       );
@@ -133,46 +129,69 @@ export default function Dashboard() {
         >
           {t("main.description")}
         </motion.p>
-        <div className="flex flex-col items-center gap-4 w-full max-w-md mx-auto">
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
-            className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100"
-          />
-          <button
-            onClick={handleUpload}
-            disabled={!selectedFile || uploading}
-            className="px-6 py-2 rounded-full bg-green-700 text-white font-semibold shadow hover:bg-green-800 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
-          >
-            {uploading && <Loader className="w-5 h-5 animate-spin" />}
-            {uploading ? t("main.uploadingButton") : t("main.uploadButton")}
-          </button>
-
-          {/* Enhanced display for upload result object */}
-          {uploadResult && (
-            <div className="text-left w-full bg-green-50 p-4 rounded-lg border border-green-200 mt-4">
-              <h3 className="font-bold text-lg text-green-800">
-                Prediction Result:
-              </h3>
-              {uploadResult.prediction && (
-                <p className="text-neutral-700">
-                  <strong>Breed:</strong> {uploadResult.prediction}
-                </p>
-              )}
-              {uploadResult.confidence && (
-                <p className="text-neutral-700">
-                  <strong>Confidence:</strong>{" "}
-                  {(uploadResult.confidence * 100).toFixed(2)}%
-                </p>
-              )}
-              {uploadResult.message && (
-                <p className="text-red-600">
-                  <strong>Status:</strong> {uploadResult.message}
-                </p>
-              )}
+        <div className="flex flex-col md:flex-row items-center gap-8 w-full max-w-2xl mx-auto">
+          {/* Image Preview */}
+          {previewUrl && (
+            <div className="w-full md:w-1/2 flex justify-center mb-4 md:mb-0">
+              <Image
+                src={previewUrl}
+                alt="Preview"
+                width={240}
+                height={240}
+                className="rounded-lg object-contain border border-green-200 bg-white"
+              />
             </div>
           )}
+          {/* Upload and Result */}
+          <div className="w-full md:w-1/2 flex flex-col items-center gap-4">
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+              className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100"
+            />
+            <button
+              onClick={handleUpload}
+              disabled={!selectedFile || uploading}
+              className="px-6 py-2 rounded-full bg-green-700 text-white font-semibold shadow hover:bg-green-800 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+            >
+              {uploading && <Loader className="w-5 h-5 animate-spin" />}
+              {uploading ? t("main.uploadingButton") : t("main.uploadButton")}
+            </button>
+            {/* Enhanced display for upload result object */}
+            {uploadResult && (
+              <div className="text-left w-full bg-green-50 p-4 rounded-lg border border-green-200 mt-4">
+                <h3 className="font-bold text-lg text-green-800">
+                  Prediction Result:
+                </h3>
+                {uploadResult.predictions &&
+                Array.isArray(uploadResult.predictions) &&
+                uploadResult.predictions.length > 0 ? (
+                  <ul className="list-disc pl-5">
+                    {uploadResult.predictions.map((pred: any, idx: number) => (
+                      <li key={idx} className="mb-2">
+                        <span className="text-neutral-700">
+                          <strong>Breed:</strong> {pred.class}
+                        </span>
+                        <br />
+                        <span className="text-neutral-700">
+                          <strong>Confidence:</strong>{" "}
+                          {(pred.confidence * 100).toFixed(2)}%
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-red-600">
+                    <strong>Status:</strong>{" "}
+                    {typeof uploadResult.message === "string"
+                      ? uploadResult.message
+                      : JSON.stringify(uploadResult.message)}
+                  </p>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </main>
 

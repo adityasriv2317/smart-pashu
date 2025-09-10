@@ -21,7 +21,7 @@ const Chatbot = () => {
 
   const handleSendMessage = async () => {
     const botApi = process.env.NEXT_PUBLIC_BOT_API;
-    const botKey = process.env.NEXT_PUBLIC_BOT_KEY;
+    const botKey = process.env.NEXT_PUBLIC_BOT;
 
     if (!message.trim()) return;
     const userMessage = { sender: "user", text: message };
