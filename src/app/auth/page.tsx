@@ -161,14 +161,14 @@ export default function AuthPage() {
     >
       {/* Header */}
       <motion.header
-        className="w-full flex items-center justify-between px-6 py-4 border-b border-green-100 bg-white/80 backdrop-blur-sm shadow-sm"
+        className="w-full flex flex-col sm:flex-row items-center justify-between px-4 sm:px-6 py-4 border-b border-green-100 bg-white/80 backdrop-blur-sm shadow-sm relative"
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.4 }}
       >
         <motion.a
           href="/"
-          className="flex items-center gap-2 cursor-pointer"
+          className="flex items-center gap-2 cursor-pointer mb-2 sm:mb-0"
           whileHover={{ scale: 1.03 }}
           transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
@@ -185,7 +185,7 @@ export default function AuthPage() {
           </span>
         </motion.a>
         <motion.h2
-          className="text-2xl font-bold absolute text-center w-full text-neutral-900 select-none"
+          className="text-xl sm:text-2xl font-bold text-center w-full text-neutral-900 select-none order-3 sm:order-none mt-2 sm:mt-0"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -196,24 +196,24 @@ export default function AuthPage() {
         </motion.h2>
         <button
           onClick={handleLanguageChange}
-          className="px-4 py-2 rounded-full cursor-pointer bg-green-700 text-white font-medium shadow hover:bg-green-800 transition-colors"
+          className="px-4 py-2 rounded-full cursor-pointer bg-green-700 text-white font-medium shadow hover:bg-green-800 transition-colors mt-2 sm:mt-0"
         >
           {tHome("changeLanguage")}
         </button>
       </motion.header>
 
       {/* Auth Tabs */}
-      <main className="flex-1 flex flex-col items-center justify-center px-4 py-6 text-center gap-4 w-full max-w-screen min-h-0 overflow-y-auto">
+      <main className="flex-1 flex flex-col items-center justify-center px-2 sm:px-4 py-6 text-center gap-4 w-full max-w-screen min-h-0 overflow-y-auto">
         <motion.div
-          className="w-full max-w-md bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-green-100"
+          className="w-full max-w-xs sm:max-w-md bg-white/90 backdrop-blur-sm rounded-2xl p-4 sm:p-8 shadow-lg border border-green-100"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
           style={{ maxHeight: "90vh", overflowY: "auto" }}
         >
-          <div className="flex justify-center mb-8 select-none">
+          <div className="flex justify-center mb-8 select-none gap-2">
             <motion.button
-              className={`flex-1 px-4 py-2.5 rounded-l-lg font-medium text-base transition-colors ${
+              className={`flex-1 px-2 sm:px-4 py-2.5 rounded-l-lg font-medium text-base transition-colors ${
                 activeTab === "login"
                   ? "bg-green-700 text-white"
                   : "bg-neutral-100 text-neutral-700 hover:bg-neutral-200"
@@ -226,7 +226,7 @@ export default function AuthPage() {
               <LogIn className="inline w-4 h-4 mr-2 mb-0.5" /> {t("tabs.login")}
             </motion.button>
             <motion.button
-              className={`flex-1 px-4 py-2.5 rounded-r-lg font-medium text-base transition-colors ${
+              className={`flex-1 px-2 sm:px-4 py-2.5 rounded-r-lg font-medium text-base transition-colors ${
                 activeTab === "register"
                   ? "bg-green-700 text-white"
                   : "bg-neutral-100 text-neutral-700 hover:bg-neutral-200"
