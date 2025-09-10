@@ -2,6 +2,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { useEffect, useState } from "react";
+import { NextIntlClientProvider, useMessages } from "next-intl";
+import en from "../../messages/en.json";
+import hi from "../../messages/hi.json";
 import { SessionProvider } from "next-auth/react";
 
 const geistSans = Geist({
@@ -24,15 +28,34 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [locale, setLocale] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("locale") || "en";
+    }
+    return "en";
+  });
+
+  useEffect(() => {
+    const storedLocale =
+      typeof window !== "undefined" && localStorage.getItem("locale");
+    if (storedLocale && storedLocale !== locale) {
+      setLocale(storedLocale);
+    }
+  }, []);
+
+  const messages = locale === "hi" ? hi : en;
+
   return (
-    <html lang="en">
-      <SessionProvider>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          {children}
-        </body>
-      </SessionProvider>
+    <html lang={locale}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <SessionProvider>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            {children}
+          </NextIntlClientProvider>
+        </SessionProvider>
+      </body>
     </html>
   );
 }

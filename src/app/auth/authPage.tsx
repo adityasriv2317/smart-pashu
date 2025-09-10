@@ -5,7 +5,6 @@ import { Sprout, ArrowRight, UserPlus, LogIn, Loader } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 import Footer from "@/components/Footer";
-import { useTranslations } from "next-intl"; // Import useTranslations
 
 // Floating label input component
 interface FloatingLabelInputProps {
@@ -13,7 +12,7 @@ interface FloatingLabelInputProps {
   label: string;
   type: string;
   required?: boolean;
-  name?: string;
+  name?: string; // Added name prop
 }
 
 function FloatingLabelInput({
@@ -68,8 +67,6 @@ function FloatingLabelInput({
 }
 
 export default function AuthPage() {
-  const t = useTranslations("auth"); // Initialize the auth namespace
-  const tHome = useTranslations("home");
   const [activeTab, setActiveTab] = useState<"login" | "register">("login");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -81,16 +78,6 @@ export default function AuthPage() {
       window.location.href = "/dashboard";
     }
   }, []);
-
-  const handleLanguageChange = () => {
-    const currentLocale =
-      typeof window !== "undefined"
-        ? localStorage.getItem("locale") || "en"
-        : "en";
-    const newLocale = currentLocale === "en" ? "hi" : "en";
-    localStorage.setItem("locale", newLocale);
-    window.location.reload();
-  };
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -115,7 +102,7 @@ export default function AuthPage() {
       window.location.href = "/dashboard";
     } catch (error: any) {
       setErrorMessage(
-        error.response?.data?.message || t("loginForm.defaultError")
+        error.response?.data?.message || "An error occurred during login."
       );
     } finally {
       setIsLoading(false);
@@ -144,7 +131,8 @@ export default function AuthPage() {
       window.location.href = "/dashboard";
     } catch (error: any) {
       setErrorMessage(
-        error.response?.data?.message || t("registerForm.defaultError")
+        error.response?.data?.message ||
+          "An error occurred during registration."
       );
     } finally {
       setIsLoading(false);
@@ -173,7 +161,7 @@ export default function AuthPage() {
         >
           <Sprout className="w-8 h-8 text-green-700" />
           <span className="text-xl font-bold tracking-tight text-neutral-900">
-            {t("header.title")}
+            Smart Pashu
           </span>
         </motion.a>
         <motion.h2
@@ -182,16 +170,8 @@ export default function AuthPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          {activeTab === "login"
-            ? t("header.welcome")
-            : t("header.createAccount")}
+          {activeTab === "login" ? "Welcome Back" : "Create Account"}
         </motion.h2>
-        <button
-          onClick={handleLanguageChange}
-          className="px-4 py-2 rounded-full cursor-pointer bg-green-700 text-white font-medium shadow hover:bg-green-800 transition-colors"
-        >
-          {tHome("changeLanguage")}
-        </button>
       </motion.header>
 
       {/* Auth Tabs */}
@@ -215,7 +195,7 @@ export default function AuthPage() {
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              <LogIn className="inline w-4 h-4 mr-2 mb-0.5" /> {t("tabs.login")}
+              <LogIn className="inline w-4 h-4 mr-2 mb-0.5" /> Login
             </motion.button>
             <motion.button
               className={`flex-1 px-4 py-2.5 rounded-r-lg font-medium text-base transition-colors ${
@@ -228,8 +208,7 @@ export default function AuthPage() {
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              <UserPlus className="inline w-4 h-4 mr-2 mb-0.5" />{" "}
-              {t("tabs.register")}
+              <UserPlus className="inline w-4 h-4 mr-2 mb-0.5" /> Register
             </motion.button>
           </div>
           <AnimatePresence mode="wait">
@@ -245,14 +224,14 @@ export default function AuthPage() {
               >
                 <FloatingLabelInput
                   id="login-email"
-                  label={t("loginForm.emailLabel")}
+                  label="Email"
                   type="email"
                   required
                   name="email"
                 />
                 <FloatingLabelInput
                   id="login-password"
-                  label={t("loginForm.passwordLabel")}
+                  label="Password"
                   type="password"
                   required
                   name="password"
@@ -274,15 +253,15 @@ export default function AuthPage() {
                       htmlFor="remember-me"
                       className="text-sm text-neutral-600"
                     >
-                      {t("loginForm.rememberLabel")}
+                      Remember me
                     </label>
                   </div>
-                  {/* <a
+                  <a
                     href="#"
                     className="text-sm text-green-700 hover:underline"
                   >
-                    {t("loginForm.forgotLink")}
-                  </a> */}
+                    Forgot password?
+                  </a>
                 </div>
 
                 <motion.button
@@ -297,7 +276,7 @@ export default function AuthPage() {
                     <Loader className="w-5 h-5 animate-spin" />
                   ) : (
                     <>
-                      {t("loginForm.button")} <ArrowRight className="w-5 h-5" />
+                      Login <ArrowRight className="w-5 h-5" />
                     </>
                   )}
                 </motion.button>
@@ -314,21 +293,21 @@ export default function AuthPage() {
               >
                 <FloatingLabelInput
                   id="register-name"
-                  label={t("registerForm.nameLabel")}
+                  label="Full Name"
                   type="text"
                   required
                   name="name"
                 />
                 <FloatingLabelInput
                   id="register-email"
-                  label={t("registerForm.emailLabel")}
+                  label="Email"
                   type="email"
                   required
                   name="email"
                 />
                 <FloatingLabelInput
                   id="register-password"
-                  label={t("registerForm.passwordLabel")}
+                  label="Password"
                   type="password"
                   required
                   name="password"
@@ -346,9 +325,9 @@ export default function AuthPage() {
                     required
                   />
                   <label htmlFor="terms" className="text-sm text-neutral-600">
-                    {t("registerForm.termsPrefix")}
+                    I agree to the{" "}
                     <a href="#" className="text-green-700 hover:underline">
-                      {t("registerForm.termsLink")}
+                      Terms of Service
                     </a>
                   </label>
                 </div>
@@ -365,8 +344,7 @@ export default function AuthPage() {
                     <Loader className="w-5 h-5 animate-spin" />
                   ) : (
                     <>
-                      {t("registerForm.button")}{" "}
-                      <ArrowRight className="w-5 h-5" />
+                      Register <ArrowRight className="w-5 h-5" />
                     </>
                   )}
                 </motion.button>

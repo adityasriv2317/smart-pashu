@@ -1,0 +1,73 @@
+{
+  "home": {
+    "header": {
+      "title": "Smart Pashu",
+      "features": "Features",
+      "gallery": "Gallery",
+      "contact": "Contact",
+      "getStarted": "Get Started"
+    },
+    "hero": {
+      "title": "Image-based Cattle & Buffalo Breed Identification",
+      "description": "Empowering Field Level Workers (FLWs) to register animals with AI-driven breed suggestions. Seamless integration with Bharat Pashudhan App (BPA) for accurate, validated records.",
+      "webAppButton": "Try Web App",
+      "mobileAppButton": "Get Mobile App"
+    },
+    "features": {
+      "aiPrediction": {
+        "title": "AI Prediction",
+        "description": "Upload cattle/buffalo images and get instant AI-driven breed suggestions with confidence scores."
+      },
+      "manualOverrides": {
+        "title": "Manual Overrides",
+        "description": "FLWs can override AI suggestions and submit final breed data directly to BPA for validated records."
+      },
+      "breedInfo": {
+        "title": "Breed Info & Gallery",
+        "description": "Access breed galleries, descriptions, and resources for quick field reference and learning."
+      }
+    },
+    "gallery": {
+      "title": "Breed Gallery",
+      "altBreed1": "Image of Breed 1",
+      "altBreed2": "Image of Breed 2",
+      "altBreed3": "Image of Breed 3",
+      "altBreed4": "Image of Breed 4"
+    },
+    "cta": {
+      "title": "Ready to get started?",
+      "description": "Sign in to the web app or download the mobile app to begin registering animals with AI-powered breed identification.",
+      "signInWeb": "Sign In (Web)",
+      "downloadApp": "Download App"
+    },
+    "changeLanguage": "हिन्दी"
+  },
+  "auth": {
+    "header": {
+      "title": "Smart Pashu",
+      "welcome": "Welcome Back",
+      "createAccount": "Create Account"
+    },
+    "tabs": {
+      "login": "Login",
+      "register": "Register"
+    },
+    "loginForm": {
+      "emailLabel": "Email",
+      "passwordLabel": "Password",
+      "rememberLabel": "Remember me",
+      "forgotLink": "Forgot password?",
+      "button": "Login",
+      "defaultError": "An error occurred during login."
+    },
+    "registerForm": {
+      "nameLabel": "Full Name",
+      "emailLabel": "Email",
+      "passwordLabel": "Password",
+      "termsPrefix": "I agree to the ",
+      "termsLink": "Terms of Service",
+      "button": "Register",
+      "defaultError": "An error occurred during registration."
+    }
+  }
+}
