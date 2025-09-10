@@ -181,42 +181,54 @@ export default function Home() {
           {t("gallery.title")}
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <div className="aspect-square rounded-lg overflow-hidden bg-neutral-100 flex items-center justify-center">
-            <Image
-              src="/file.svg"
+          <motion.div
+            animate={{ scale: 1 }}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+            className="aspect-square rounded-lg overflow-hidden bg-neutral-100 flex items-center justify-center"
+          >
+            <img
+              src="/c1.jpg"
               alt={t("gallery.altBreed1")}
-              width={80}
-              height={80}
-              className="object-contain"
+              className="object-cover w-full h-full"
             />
-          </div>
-          <div className="aspect-square rounded-lg overflow-hidden bg-neutral-100 flex items-center justify-center">
-            <Image
-              src="/globe.svg"
+          </motion.div>
+          <motion.div
+            animate={{ scale: 1 }}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+            className="aspect-square rounded-lg overflow-hidden bg-neutral-100 flex items-center justify-center"
+          >
+            <img
+              src="/c2.jpg"
               alt={t("gallery.altBreed2")}
-              width={80}
-              height={80}
-              className="object-contain"
+              className="object-cover w-full h-full"
             />
-          </div>
-          <div className="aspect-square rounded-lg overflow-hidden bg-neutral-100 flex items-center justify-center">
-            <Image
-              src="/window.svg"
+          </motion.div>
+          <motion.div
+            animate={{ scale: 1 }}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+            className="aspect-square rounded-lg overflow-hidden bg-neutral-100 flex items-center justify-center"
+          >
+            <img
+              src="/c3.jpg"
               alt={t("gallery.altBreed3")}
-              width={80}
-              height={80}
-              className="object-contain"
+              className="object-cover w-full h-full"
             />
-          </div>
-          <div className="aspect-square rounded-lg overflow-hidden bg-neutral-100 flex items-center justify-center">
-            <Image
-              src="/vercel.svg"
+          </motion.div>
+          <motion.div
+            animate={{ scale: 1 }}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+            className="aspect-square rounded-lg overflow-hidden bg-neutral-100 flex items-center justify-center"
+          >
+            <img
+              src="/c4.webp"
               alt={t("gallery.altBreed4")}
-              width={80}
-              height={80}
-              className="object-contain"
+              className="object-cover w-full h-full"
             />
-          </div>
+          </motion.div>
         </div>
       </section>
 
