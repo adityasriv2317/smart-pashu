@@ -22,26 +22,6 @@ export default function Footer() {
           © {new Date().getFullYear()} FourAM.
         </div>
       </div>
-
-      <div className="flex flex-row text-gray-900 items-center gap-3">
-        <a
-          href="https://nextjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:underline text-xs sm:text-base"
-        >
-          Built with NEXT JS
-        </a>
-        <span className="text-gray-500">&amp;</span>
-        <a
-          href="https://tailwindcss.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:underline text-xs sm:text-base"
-        >
-          Tailwind CSS
-        </a>
-      </div>
     </motion.footer>
   );
 }

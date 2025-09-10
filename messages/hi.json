@@ -69,5 +69,29 @@
       "button": "रजिस्टर करें",
       "defaultError": "पंजीकरण के दौरान एक त्रुटि हुई।"
     }
+  },
+  "dashboard": {
+    "header": {
+      "title": "Smart Pashu",
+      "logoutButton": "लॉग आउट"
+    },
+    "main": {
+      "title": "आपके डैशबोर्ड में आपका स्वागत है",
+      "description": "यहां आप AI नस्ल भविष्यवाणी के लिए जानवरों की छवियां अपलोड कर सकते हैं और अपनी गतिविधि का प्रबंधन कर सकते हैं।",
+      "uploadButton": "छवि अपलोड करें",
+      "uploadingButton": "अपलोड हो रहा है..."
+    },
+    "notifications": {
+      "selectFile": "कृपया अपलोड करने के लिए एक फ़ाइल चुनें।",
+      "uploadSuccess": "अपलोड सफल!",
+      "uploadFailed": "अपलोड विफल।"
+    }
+  },
+  "chatbot": {
+    "headerTitle": "Smart Pashu चैटबॉट",
+    "welcomeMessage": "मैं आज आपकी मदद कैसे कर सकता हूँ?",
+    "inputPlaceholder": "अपना संदेश टाइप करें...",
+    "inputHelper": "भेजने के लिए एंटर दबाएं, नई लाइन के लिए शिफ्ट+एंटर",
+    "loadingIndicator": "..."
   }
 }

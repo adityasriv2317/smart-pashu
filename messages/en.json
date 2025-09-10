@@ -69,5 +69,29 @@
       "button": "Register",
       "defaultError": "An error occurred during registration."
     }
+  },
+  "dashboard": {
+    "header": {
+      "title": "Smart Pashu",
+      "logoutButton": "Logout"
+    },
+    "main": {
+      "title": "Welcome to your Dashboard",
+      "description": "Here you can upload animal images for AI breed prediction and manage your activity.",
+      "uploadButton": "Upload Image",
+      "uploadingButton": "Uploading..."
+    },
+    "notifications": {
+      "selectFile": "Please select a file to upload.",
+      "uploadSuccess": "Upload successful!",
+      "uploadFailed": "Upload failed."
+    }
+  },
+  "chatbot": {
+    "headerTitle": "Smart Pashu Chatbot",
+    "welcomeMessage": "How can I help you today?",
+    "inputPlaceholder": "Type your message...",
+    "inputHelper": "Press Enter to send, Shift+Enter for new line",
+    "loadingIndicator": "..."
   }
 }

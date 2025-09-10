@@ -49,7 +49,14 @@ export default function Home() {
       {/* Header */}
       <header className="w-full flex items-center justify-between px-6 py-4 border-b border-neutral-200 select-none">
         <div className="flex items-center gap-2">
-          <Sprout className="w-8 h-8 text-green-700" />
+          {/* <Sprout className="w-8 h-8 text-green-700" /> */}
+          <Image
+            src="/Pashu.png"
+            alt="Smart Pashu Logo"
+            width={48}
+            height={48}
+            className="object-contain"
+          />
           <span className="text-xl font-bold tracking-tight text-neutral-900">
             {t("header.title")}
           </span>

@@ -5,7 +5,8 @@ import { Sprout, ArrowRight, UserPlus, LogIn, Loader } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 import Footer from "@/components/Footer";
-import { useTranslations } from "next-intl"; // Import useTranslations
+import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 // Floating label input component
 interface FloatingLabelInputProps {
@@ -171,7 +172,14 @@ export default function AuthPage() {
           whileHover={{ scale: 1.03 }}
           transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
-          <Sprout className="w-8 h-8 text-green-700" />
+          {/* <Sprout className="w-8 h-8 text-green-700" /> */}
+          <Image
+            src="/Pashu.png"
+            alt="Smart Pashu Logo"
+            width={48}
+            height={48}
+            className="object-contain"
+          />
           <span className="text-xl font-bold tracking-tight text-neutral-900">
             {t("header.title")}
           </span>
