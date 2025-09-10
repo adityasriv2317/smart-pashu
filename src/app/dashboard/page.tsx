@@ -112,9 +112,9 @@ export default function Dashboard() {
       </motion.header>
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col items-center justify-flex-start px-6 py-16 text-center gap-8 w-full">
+      <main className="flex-1 flex flex-col items-center justify-flex-start px-4 py-6 sm:py-6 text-center gap-8 w-full">
         <motion.h1
-          className="text-3xl sm:text-5xl font-extrabold text-neutral-900 mb-4 tracking-tight select-none"
+          className="text-3xl sm:text-5xl font-extrabold text-neutral-900 mb-2 tracking-tight select-none drop-shadow-sm"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
@@ -122,64 +122,77 @@ export default function Dashboard() {
           {t("main.title")}
         </motion.h1>
         <motion.p
-          className="max-w-xl mx-auto text-lg text-neutral-600 mb-6"
+          className="max-w-xl mx-auto text-lg text-neutral-600 mb-2 sm:mb-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
         >
           {t("main.description")}
         </motion.p>
-        <div className="flex flex-col md:flex-row items-center gap-8 w-full max-w-2xl mx-auto">
+        <div className="flex flex-col md:flex-row items-stretch gap-8 w-full max-w-3xl mx-auto bg-white/80 rounded-2xl shadow-lg p-6 md:p-8 border border-green-100">
           {/* Image Preview */}
-          {previewUrl && (
-            <div className="w-full md:w-1/2 flex justify-center mb-4 md:mb-0">
+          <div className="w-full md:w-1/2 flex flex-col items-center justify-center mb-4 md:mb-0">
+            {previewUrl ? (
               <Image
                 src={previewUrl}
                 alt="Preview"
-                width={240}
-                height={240}
-                className="rounded-lg object-contain border border-green-200 bg-white"
+                width={260}
+                height={260}
+                className="rounded-xl object-contain border border-green-200 bg-white shadow-md"
               />
-            </div>
-          )}
+            ) : (
+              <div className="w-[260px] h-[260px] flex items-center justify-center rounded-xl border border-dashed border-green-200 bg-green-50 text-green-400 text-6xl">
+                <Sprout className="w-16 h-16" />
+              </div>
+            )}
+          </div>
           {/* Upload and Result */}
-          <div className="w-full md:w-1/2 flex flex-col items-center gap-4">
+          <div className="w-full md:w-1/2 flex flex-col items-center gap-4 justify-center">
             <input
               type="file"
               accept="image/*"
               onChange={handleFileChange}
-              className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100"
+              className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-400"
             />
             <button
               onClick={handleUpload}
               disabled={!selectedFile || uploading}
-              className="px-6 py-2 rounded-full bg-green-700 text-white font-semibold shadow hover:bg-green-800 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+              className="px-6 py-2 rounded-full bg-gradient-to-r from-green-600 to-green-700 text-white font-semibold shadow hover:from-green-700 hover:to-green-800 transition-colors disabled:opacity-50 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-green-400"
             >
               {uploading && <Loader className="w-5 h-5 animate-spin" />}
               {uploading ? t("main.uploadingButton") : t("main.uploadButton")}
             </button>
             {/* Enhanced display for upload result object */}
             {uploadResult && (
-              <div className="text-left w-full bg-green-50 p-4 rounded-lg border border-green-200 mt-4">
-                <h3 className="font-bold text-lg text-green-800">
-                  Prediction Result:
+              <div className="text-left w-full bg-green-50 p-4 rounded-xl border border-green-200 mt-2 shadow-sm">
+                <h3 className="font-bold text-lg text-green-800 mb-2 tracking-tight">
+                  Prediction Result
                 </h3>
                 {uploadResult.predictions &&
                 Array.isArray(uploadResult.predictions) &&
                 uploadResult.predictions.length > 0 ? (
-                  <ul className="list-disc pl-5">
-                    {uploadResult.predictions.map((pred: any, idx: number) => (
-                      <li key={idx} className="mb-2">
-                        <span className="text-neutral-700">
-                          <strong>Breed:</strong> {pred.class}
-                        </span>
-                        <br />
-                        <span className="text-neutral-700">
-                          <strong>Confidence:</strong>{" "}
-                          {(pred.confidence * 100).toFixed(2)}%
-                        </span>
-                      </li>
-                    ))}
+                  <ul className="space-y-3">
+                    {uploadResult.predictions.map((pred: any, idx: number) => {
+                      const confidencePercent = (pred.confidence * 100).toFixed(2);
+                      const isLow = Number(confidencePercent) < 25;
+                      return (
+                        <li
+                          key={idx}
+                          className="flex flex-col sm:flex-row sm:items-center sm:gap-4 bg-white rounded-lg p-3 border border-green-100 shadow-sm"
+                        >
+                          <span className="text-neutral-800 text-base font-semibold">
+                            <strong>Breed:</strong> {pred.class}
+                          </span>
+                          <span
+                            className={`text-base font-semibold ${
+                              isLow ? "text-red-600" : "text-green-700"
+                            }`}
+                          >
+                            <strong>Confidence:</strong> {confidencePercent}%
+                          </span>
+                        </li>
+                      );
+                    })}
                   </ul>
                 ) : (
                   <p className="text-red-600">
