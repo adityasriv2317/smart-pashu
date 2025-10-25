@@ -124,7 +124,7 @@ export default function Home() {
             {t("hero.webAppButton")} <Laptop className="w-5 h-5" />
           </a>
           <a
-            href="#get-app"
+            href="https://drive.google.com/file/d/1dX_p3BRmanIFFnIgRerDRC2IWfND6K3i/view?usp=sharing"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-green-700 text-green-700 font-semibold hover:bg-green-50 transition-colors text-base"
           >
             {t("hero.mobileAppButton")} <Smartphone className="w-5 h-5" />
@@ -255,7 +255,7 @@ export default function Home() {
               {t("cta.signInWeb")} <ArrowRight className="w-5 h-5" />
             </a>
             <a
-              href="#get-app"
+              href="https://drive.google.com/file/d/1dX_p3BRmanIFFnIgRerDRC2IWfND6K3i/view?usp=sharing"
               className="inline-flex w-fit items-center gap-2 px-6 py-3 rounded-full border border-green-700 text-green-700 font-semibold hover:bg-green-50 transition-colors text-base"
             >
               {t("cta.downloadApp")} <Smartphone className="w-5 h-5" />
