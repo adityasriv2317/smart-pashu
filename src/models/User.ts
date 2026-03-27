@@ -4,6 +4,7 @@ export interface IUser extends Document {
   name: string;
   email: string;
   password: string;
+  role?: string;
 }
 
 const UserSchema: Schema = new Schema({
@@ -21,6 +22,11 @@ const UserSchema: Schema = new Schema({
     type: String,
     required: [true, "Please provide a password."],
     select: false,
+  },
+  role: {
+    type: String,
+    enum: ["user", "admin"],
+    default: "user",
   },
 });
 
